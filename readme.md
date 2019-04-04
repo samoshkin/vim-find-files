@@ -11,7 +11,7 @@ Out of the box, Vim has `grepprg` setting and accompanying `:grep` command to se
 **Features**:
 - Show matching files in different views: quickfix list (default), new buffer, argument list, custom user-defined view. Buffer option is useful, when you want to further edit the file list.
 - Convert between views. For example, you can start with a quickfix list to review matches, convert to a buffer to remove some files from a list, and finally convert to the argument list to execute `:grep` command next against it.
-- Open and preview files from the file list buffer using predefined mappings
+- Open and preview files from the file list buffer using predefined mappings.
 - Search relative to the `cwd` or to the current file's directory.
 - Filter any quickfix list to keep unique files only. See files with at least one match. Useful when you run `:grep` command and want to see list of matched files, instead of individual matches. This is similar to running `grep --files-with-matches` in a shell.
 
@@ -30,7 +30,7 @@ Use `:Find {args}` command to search for files and show them in a quickfix list.
 
 Use `:FindA {args}` or `:FindB {args}` command variants to show results in the argument list or in a new buffer respectively.
 
-Use one of `:Buf2Qf`, `:Buf2Args`, `:Qf2Buf`, `:Qf2Args`, `:Args2Qf`, `:Args2Buf` commands to convert between views on the fly: `quickfix <---> buffer <---> argslist`.
+Use one of `:Buf2Qf`, `:Buf2Args`, `:Qf2Buf`, `:Qf2Args`, `:Args2Qf`, `:Args2Buf` commands to convert between views on the fly: `quickfix <---> buffer <---> args list`.
 
 
 ## Features and customization
@@ -39,14 +39,14 @@ Use one of `:Buf2Qf`, `:Buf2Args`, `:Qf2Buf`, `:Qf2Args`, `:Args2Qf`, `:Args2Buf
 
 By default following commands are exported:
 - `:Find {args}`, search for files and show results in a quickfix list
-- `:FindA {args}`, populate Vim's argument list with the found files
+- `:FindA {args}`, populate Vim's argument list with the list of matched files
 - `:FindB {args}`, show search results in a new buffer
 
-If you don't like the default command name, you can override it. In the example below, `Search`, `SearchA`, `SearchB` commands would be exported respectively.
+If you don't like the default command name, you can override it. In the example below, `Search`, `SearchA` and `SearchB` commands would be exported respectively.
 ```vim
 let g:find_files_command_name = 'Search'
 ```
-If you don't want any commands exported at all, set the command name to an empty string.
+If you don't want any commands being exported at all, set the command name to an empty string.
 
 ```vim
 let g:find_files_command_name = ''
@@ -71,21 +71,21 @@ When you're using `:FindB` command, search results are shown in a new buffer.
 By default, `enew` command is used to open the buffer. If you want to open a buffer in a new split, or in a new tab:
 
 ```vim
-" or 'new', 'tabnew'
-let g:find_files_buf_view_command = "vnew"
+" 'enew'(default), 'vnew', 'new' or 'tabnew'
+let g:find_files_buf_command = "vnew"
 ```
 
 Extra buffer-local mappings are defined:
 
 - `o`, open file under the cursor in the same window
 - `O`, open file under the cursor in a new split and focus it
-- `p`, preview file under the cursor in a new split, and keep focus in the file list buffer
+- `p`, preview file under the cursor in a new split, but keep focus in the file list buffer
 - `q`, close buffer with search results and any preview windows
 
 You can override mappings, if they hide default Vim's behavior:
 
 ```vim
-let g:find_files_filelist_mappings = {
+let g:find_files_buf_mappings = {
   \ 'open': '<CR>',
   \ 'preview': '<F2>',
   \ }
@@ -100,24 +100,23 @@ let g:find_files_define_mappings = 0
 When file is opened with `O` or `p` shortcuts, vertical split is used by default. You can override this behavior:
 
 ```vim
-" Default is 'vsplit'
-let g:find_files_preview_command = "split"
+" 'vsplit'(default) or 'split'
+let g:find_files_buf_preview_command = "split"
 ```
 
-By default, the buffer has following settings: `nowrap`, `nospell`, `nofoldenable`, `norelativenumber`. Note, that the buffer has dedicated `filetype=filelist`, so you can apply own buffer-local customizations using `FileType` auto command:
+By default, the buffer has following settings: `nowrap`, `nospell`, `nofoldenable`, `norelativenumber`. Note, that the buffer has dedicated `filetype=findfiles`, so you can apply own buffer-local customizations using `FileType` auto command:
  
 ```vim
 augroup my_find_files_customization
   au!
 
   " Custom mappings
-  au FileType filelist nnoremap <silent> <buffer> <CR> gf
+  au FileType findfiles nnoremap <silent> <buffer> <CR> gf
 
   " Custom settings
-  au FileType filelist setlocal wrap
+  au FileType findfiles setlocal wrap
 augroup END
 ```
-
 
 ### Convert between views
 

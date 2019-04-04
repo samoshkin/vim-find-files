@@ -10,7 +10,7 @@ setlocal number
 
 " Define local buffer filelist-specific mappings
 if g:find_files_define_mappings
-  let s:mappings = g:find_files_filelist_mappings
+  let s:mappings = g:find_files_buf_mappings
 
   exe "nnoremap <silent> <buffer> " . s:mappings['open'] . " gf"
   exe "nnoremap <silent> <buffer> " . s:mappings['open_in_split'] . " :call <SID>open_file(0)<CR>"
@@ -28,9 +28,9 @@ function s:open_file(is_preview)
   let curwin = winnr()
 
   " Opew a new split, and file under the cursor in the split
-  exe g:find_files_preview_command
+  exe g:find_files_buf_preview_command
   norm gf
-  let w:find_files_is_preview = 1
+  let w:find_files_is_preview_win = 1
 
   " If opened in a preview mode, keep focus in filelist window
   if a:is_preview
@@ -40,7 +40,7 @@ endfunction
 
 " Close any opened filelist preview windows
 function s:close_preview_windows()
-  let windows = filter(range(1, winnr('$')), 'getwinvar(v:val, "find_files_is_preview")')
+  let windows = filter(range(1, winnr('$')), 'getwinvar(v:val, "find_files_is_preview_win")')
 
   for l:win in reverse(windows)
     exe l:win . "wincmd c"

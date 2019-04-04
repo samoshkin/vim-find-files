@@ -12,33 +12,33 @@ endif
 
 " Default findprg (same to grepprg)
 if !exists('g:find_files_findprg')
-  let g:find_files_findprg = 'find .'
+  let g:find_files_findprg = 'find $d ! -type d $*'
 endif
 
-" How to open new buffer when find results are shown in a "filelist" buffer
-if !exists('g:find_files_buf_view_command')
-  let g:find_files_buf_view_command = "enew"
+" How to open new buffer when find results are shown in a "findfiles" buffer
+if !exists('g:find_files_buf_command')
+  let g:find_files_buf_command = "enew"
 endif
 
-" Should the plugin define mappings for "filelist" buffer
+" Should the plugin define mappings for "findfiles" buffer
 if !exists('g:find_files_define_mappings')
   let g:find_files_define_mappings = 1
 endif
 
-" Declares default mappings for "filelist" buffer
-if !exists('g:find_files_filelist_mappings')
-  let g:find_files_filelist_mappings = {}
+" Declares default mappings for "findfiles" buffer
+if !exists('g:find_files_buf_mappings')
+  let g:find_files_buf_mappings = {}
 endif
-call extend(g:find_files_filelist_mappings, {
+call extend(g:find_files_buf_mappings, {
       \ 'open': 'o',
       \ 'open_in_split': 'O',
       \ 'preview': 'p',
       \ 'close': 'q',
       \ }, 'keep')
 
-" How to open preview from "filelist" buffer
-if !exists('g:find_files_preview_command')
-  let g:find_files_preview_command = "vsplit"
+" How to open preview from "findfiles" buffer
+if !exists('g:find_files_buf_preview_command')
+  let g:find_files_buf_preview_command = "vsplit"
 endif
 
 " Define global "FindXXX" commands

@@ -2,10 +2,10 @@
 function find_files#buf#new(content, ...)
   let title = get(a:, "1", "[Scratch]")
 
-  " Create new buffer with filetype=filelist
-  exe g:find_files_buf_view_command
+  " Create new buffer with filetype=findfiles
+  exe g:find_files_buf_command
   let w:scratch = 1
-  setlocal filetype=filelist
+  setlocal filetype=findfiles
   silent! exe "file! " . fnameescape(title)
 
   " Populate buffer with a content
