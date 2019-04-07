@@ -3,11 +3,9 @@
 Search for files and show results in a quickfix list, a new buffer, or populate the Vim's argument list.
 
 ## Demo
-This "Vim Universe" screencast shows the plugin usage. If you want to skip introduction and rationale behind this plugin, use this [time code](https://vimeo.com/328924428#t=3m0s).
+See tis [Vim Universe](https://vimeo.com/328924428) screencast on Vimeo, that shows the plugin usage. If you want to skip introduction and rationale behind this plugin, use this [time code](https://vimeo.com/328924428#t=3m0s).
 
-<div style="text-align: center">
-  <iframe src="https://player.vimeo.com/video/328924428" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-</div>
+[![Plugin demo](https://i.vimeocdn.com/video/773584357.webp?mw=960&mh=540)](https://vimeo.com/328924428)
 
 
 ## Overview
