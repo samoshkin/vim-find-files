@@ -2,6 +2,14 @@
 
 Search for files and show results in a quickfix list, a new buffer, or populate the Vim's argument list.
 
+## Demo
+This "Vim Universe" screencast shows the plugin usage. If you want to skip introduction and rationale behind this plugin, use this [time code](https://vimeo.com/328924428#t=3m0s).
+
+<div style="text-align: center">
+  <iframe src="https://player.vimeo.com/video/328924428" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div>
+
+
 ## Overview
 `vim-find-files` plugin allows you to search for files in a directory hierarchy. This is same to using GNU `find` in a shell, but now you don't have to leave Vim.
 
