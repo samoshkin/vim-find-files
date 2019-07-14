@@ -6,7 +6,7 @@
 " - funcref, custom callback to render results
 function find_files#execute(args, view, is_relative)
   if (empty(a:args))
-    call s:echo_warning("Seach text is not specified")
+    call s:echo_warning("Search text is not specified")
     return
   endif
 
