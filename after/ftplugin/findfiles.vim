@@ -29,7 +29,12 @@ function s:open_file(is_preview)
 
   " Opew a new split, and file under the cursor in the split
   exe g:find_files_buf_preview_command
-  norm gf
+
+  " Remove ansi escape sequences for shell output that is colored
+  if !exists('s:find_files_cwd')
+    let s:find_files_cwd = getcwd()
+  endif
+  exe "silent! edit " . s:find_files_cwd . substitute(substitute(getline('.'), '\[0m', '', 'g'), '.*\.\/', '\/', 'g')
   let w:find_files_is_preview_win = 1
 
   " If opened in a preview mode, keep focus in filelist window
